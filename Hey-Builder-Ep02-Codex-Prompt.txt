@@ -1,0 +1,36 @@
+KETTLE & BUN | Codex build prompt
+
+Build and run a working English-language café ordering site from the attached hand-drawn wireframe. Use the sketch for the layout and the order flow.
+Make it one page with two distinct sections, Home and Menu, plus a receipt dialog. In a fresh workspace, use Vite, React, TypeScript and Three.js via React Three Fiber.
+Keep it deployable to static hosting with locally bundled assets and free dependencies.
+
+DESIGN
+Use espresso brown, warm cream and paprika red, with a bold serif headline, clear body text and generous spacing. Make the design feel like a contemporary burger café.
+Use a split intro on desktop and stack it naturally on phones. Lead with “Stacked fresh. Brewed slow.”, a short café introduction, and a View Menu button linked to #menu.
+Give the Menu section a warm cream background, appetizing local food images or renders, clear prices and prominent quantity controls.
+
+TEAPOT LOADER AND THREE.JS HERO
+On first load, show a small ceramic teapot with a lid, curved spout, handle and curling steam. Fade into Home as it becomes usable, with a short timeout so the loader cannot trap anyone.
+Build the hero burger as five independently animated Three.js groups. Use a golden sesame top bun, ruffled lettuce, draped cheddar, a seared patty and a toasted bottom bun.
+Use detailed shapes, textured materials and warm lighting. Start with all five layers visibly separated and suspended in a clear vertical composition.
+Keep the scene sticky for a short part of the Home scroll. Map scroll progress to smoothly interpolated positions and rotations so each layer settles onto the stack in sequence.
+At the end, hold the finished burger briefly before the Menu section comes into view. Reverse the assembly when scrolling up. Keep View Menu usable throughout.
+Cap the canvas pixel density, frame all layers on narrow screens, and pause animation offscreen. Show a static burger when WebGL is unavailable or reduced motion is enabled.
+
+MENU AND ORDER REVIEW
+Use the sketch’s sample prices in editable local data. Classic Smash costs $8.00, House Tea costs $4.00, and Crispy Veg Burger costs $7.50.
+Let customers add, remove and change quantities. Show a mobile-friendly sticky Review Order button with item count and total once the cart has items.
+Open an accessible receipt dialog with each item, quantity, line total, grand total, an order notes field and an Edit Order action. Calculate money in integer cents and display it in USD.
+Support keyboard dismissal and return focus to the Review Order button. Preserve the cart and notes if the customer returns from WhatsApp.
+
+WHATSAPP HANDOFF
+Read the café’s public recipient number from one configuration setting. For Vite, use VITE_RESTAURANT_WHATSAPP and include a blank example in .env.example.
+On Confirm in WhatsApp, open https://wa.me/<international-digits>?text=<encoded-message> from the user’s click. Use encodeURIComponent on the message.
+Include the café name, quantities, items, line totals, grand total and any notes in the draft. Explain in the dialog that the customer taps Send in WhatsApp.
+If the number is unset, label the flow Demo mode and offer Copy order text with visible confirmation.
+
+VERIFY AND DELIVER
+Build the actual site and run the production build. Check Home and Menu at desktop and phone widths.
+Test scroll assembly in both directions and the static fallback. Test that an empty cart, quantity edits and receipt totals behave correctly.
+Verify that two Classic Smash burgers with the note “No onions” produce a $16.00 receipt and the same details in the decoded WhatsApp draft.
+Add a short README with local run, build, static hosting and recipient setup instructions. Report which checks you ran.

@@ -1,0 +1,30 @@
+Update the existing Kettle & Bun project in place. Work with its current Three.js hero, menu, cart, and receipt components.
+
+1. MAKE THE BURGER ANIMATION SMOOTHER AND MORE DETAILED
+- Replace the current stepped assembly with continuous motion driven by a single 0–1 scroll progress value. Smooth it with frame-delta damping in useFrame and ease each ingredient across its own overlapping progress range.
+- Start with every ingredient clearly visible and floating apart. Sequence the assembly through bottom bun, patty, cheddar, pickles, tomato, lettuce, and top bun. Give each layer a slight sideways drift and tilt that ease out as it lands.
+- Keep motion continuous at every transition. Scrolling slowly should reveal small movements, and scrolling back up should smoothly undo the same assembly. Extend the sticky scroll range if the sequence feels rushed.
+- Add a toasted bun edge, individually visible sesame seeds, a rough seared patty, folded cheddar, and ruffled lettuce. Use warm lighting, contact shadows that deepen as the layers meet, and a gentle camera push after the final bun lands.
+- Keep all ingredients in frame on narrow phones. Reuse meshes and materials, cap canvas pixel density, and keep a polished static burger view for reduced motion or unavailable WebGL.
+
+2. EXPAND THE MENU TO 24 ITEMS AND MAKE IT COMPACT ON MOBILE
+- Put the full catalog in one editable data source. Keep the existing IDs for Classic Smash, House Tea, and Crispy Veg Burger so saved carts still work.
+- Burgers — Classic Smash $8, Double Smash $11, BBQ Bacon $10.50, Spicy Chicken $9, Crispy Veg Burger $7.50.
+- Combos — Classic Combo $12, Double Combo $15, Veg Combo $11.50. Show what's included in each combo.
+- Sides — Sea Salt Fries $3.50, Loaded Fries $5.50, Onion Rings $4.50, Cabbage Slaw $3, Jalapeño Bites $4.50.
+- Tea & Coffee — House Tea $4, Mint Tea $4.50, Iced Lemon Tea $4.50, Espresso $3, Latte $4.50.
+- Cold Drinks — House Lemonade $4.50, Cola $3, Sparkling Water $2.50.
+- Desserts — Chocolate Brownie $4.50, Vanilla Scoop $3.50, Burnt Cheesecake $5.50.
+- On phones, use one horizontally scrollable row of category chips and compact item rows. Each row gets a name, a short description, a price, and aligned Add or quantity controls. Use small thumbnails where useful and keep touch targets at least 44px.
+- Keep the mobile order bar within the bottom safe area. Show item count, total, and Review Order, with enough space to reach the last menu row.
+
+3. OPEN WHATSAPP DIRECTLY FROM THE RECEIPT
+- Make “Confirm & Open WhatsApp” the primary action in the receipt. Keep Copy Order Text as a secondary action.
+- Read the recipient from VITE_RESTAURANT_WHATSAPP and normalize it to international digits only. Use 12025550147 as a clearly labeled fictional value in .env.example and as the demo fallback when the setting is blank. Keep the WhatsApp action visible in demo mode.
+- Make the primary action a direct link activated by the user's tap. Set its href to `https://wa.me/${digits}?text=${encodeURIComponent(orderText)}` so mobile can hand off to the app and desktop can follow the WhatsApp web flow.
+- Build the draft from the reviewed order. Include Kettle & Bun, item names, quantities, line totals, the final total, and any notes. Tell the customer to tap Send in WhatsApp and keep their cart available when they return.
+
+VERIFY
+- Run the production build. Check the hero with slow scrolling and direction changes, and check the menu at 360px and desktop widths.
+- Add two Classic Smash burgers with the note “No onions.” Verify a $16.00 receipt and confirm that the decoded WhatsApp link contains the recipient, both burgers, the total, and the note.
+- With an active test recipient configured, verify on a phone that one tap opens the intended chat with the draft in the message box. Stop at the draft.
